@@ -1,0 +1,48 @@
+while (n <= MaxTbl) {
+		CrtBT(root, n);
+		for (int NExp = 0; NExp < 100; NExp++) {
+			//успешный поиск
+			 z = (rand() % n + 1) * 2;
+			RezPoisk = Posled(n, z);
+			Rez1Usp[0][Razm] += RezPoisk;
+
+			RezPoisk = Binar(n, z);
+			Rez1Usp[1][Razm] += RezPoisk;
+
+			RezPoisk = search_Fibonachiif(n, z);
+			Rez1Usp[2][Razm] += RezPoisk;
+
+			RezPoisk = search_Fibonachi(n, z);
+			Rez1Usp[3][Razm] += RezPoisk;
+
+			RezPoisk = find(root, z);
+			Rez1Usp[4][Razm] += RezPoisk;
+
+			//безуспешный поиск
+			z = (rand() % (n + 1)) * 2;
+			RezPoisk = Posled(n, z);
+			Rez1Bez[0][Razm] += RezPoisk;
+
+			RezPoisk = Binar(n, z);
+			Rez1Bez[1][Razm] += RezPoisk;
+
+			RezPoisk = search_Fibonachiif(n, z);
+			Rez1Bez[2][Razm] += RezPoisk;
+
+			RezPoisk = search_Fibonachi(n, z);
+			Rez1Bez[3][Razm] += RezPoisk;
+
+			RezPoisk = find(root, z);
+			Rez1Bez[4][Razm] += RezPoisk;
+
+		}
+		for (int i = 0; i < KolAlg; i++) {
+			Rez1Usp[i][Razm] = Rez1Usp[i][Razm] / 100;
+			Rez1Bez[i][Razm] = Rez1Bez[i][Razm] / 100;
+		}
+		Nrazm[Razm] = n;
+		n += Step;
+		Razm += 1;
+		FreeTree(root);
+		root = nullptr;
+	}
